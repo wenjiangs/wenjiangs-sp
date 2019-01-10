@@ -1,0 +1,58 @@
+<import src="/components/wxParse/wxParse.wxml"/>
+<view class="page topicPage">
+  <view class="content">
+    <scroll-view
+      scroll-y style="height: {{scrollViewHeight}}px;"
+      bindscrolltolower="loadData"
+    >
+      <view class="topicList">
+        <view class="topicItem" bindtap="toSingle" data-id="{{item.ID}}"
+        wx:for="{{dataList}}" wx:key="i">
+          <view class="tiTop">
+            <view class="titAvatar pull-left">
+              <image src="{{item.author_avatar}}" mode="aspectFill"/>
+            </view>
+            <view class="titText">
+              <view class="titUserName">{{item.author_name}}</view>
+              <view class="titUserMeta">
+                <view class="wjModel">{{item.date}}</view>
+                <view class="wjModel">{{item.views}} 浏览</view>
+              </view>
+            </view>
+          </view>
+          <view class="tiContent tiAloneContent">
+          <text wx:if="{{item.title.length>0}}">{{item.title}} - </text>
+          {{item.content}}
+          </view>
+          <view class="topicImgList" wx:if="{{item.thumbnail}}">
+            <view wx:if="{{item.thumbnail.length==1}}" class="singleImg">
+              <image catchtap="viewBigImage" src="{{item.thumbnails[0]}}"
+                data-src="{{item.thumbnail[0]}}"
+                data-list="{{item.thumbnail}}"
+                mode="aspectFill"/>
+            </view>
+            <view wx:if="{{item.thumbnail.length>1}}" class="topicImgItem" wx:for-item="iItem"
+            wx:for="{{item.thumbnails}}" wx:key="i">
+              <image catchtap="viewBigImage" src="{{iItem}}"
+                data-src="{{item.thumbnail[index]}}"
+                data-list="{{item.thumbnail}}"
+                mode="aspectFill"/>
+            </view>
+          </view>
+          <view class="singleTools tiFooter">
+            <view class="singleToolsItem" bindtap="showCommentForm">
+              <i class="iconfont icon-xiaoxi"></i> 评论 {{item.comment_count}}
+            </view>
+            <view class="singleToolsItem" bindtap="collection">
+              <i class="iconfont icon-xin"></i> {{collectionText}} {{item.collection}}
+            </view>
+            <view class="singleToolsItem" bindtap="sharePost">
+              <i class="iconfont icon-iconfontfenxiang"></i> 分享
+            </view>
+          </view>
+        </view>
+        <view class="loadMore">{{loadText}}</view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

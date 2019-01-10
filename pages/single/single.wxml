@@ -1,0 +1,87 @@
+<import src="/components/wxParse/wxParse.wxml"/>
+<view class="page">
+  <view class="singleTools">
+    <view class="singleToolsItem" bindtap="showCommentForm">
+      <i class="iconfont icon-xiaoxi"></i>评论 {{post.comment_count}}
+    </view>
+    <view class="singleToolsItem" bindtap="collection">
+      <i class="iconfont icon-xin"></i>{{collectionText}} {{post.collection}}
+    </view>
+    <view class="singleToolsItem" bindtap="sharePost">
+      <i class="iconfont icon-iconfontfenxiang"></i>分享
+    </view>
+  </view>
+  <view class="maskBg" wx:if="{{showMask}}" bindtap="hidePopup"></view>
+  <view class="publishComment" wx:if="{{showCF}}">
+    <view class="pubText">
+      <textarea
+      fixed="true"
+      placeholder="请输入您的评论"
+      value="{{newCommentContent}}"
+      bindinput="commentInput"
+      ></textarea>
+    </view>
+    <view class="pubTools">
+      <view catchtap="checkComment" class="btn btn-primary pull-right">发布</view>
+    </view>
+  </view>
+  <view class="content">
+    <scroll-view
+      scroll-y style="height: {{scrollViewHeight}}px;"
+      bindscrolltolower="get_comment"
+    >
+    <view class="singleHead">
+      <view class="singleTitle" wx:if="{{post.title}}">{{post.title}}</view>
+      <navigator url="/pages/author/author?id={{post.post_author}}" hover-class="none">
+      <view class="tiTop singTop">
+        <view class="titAvatar pull-left">
+          <image src="{{post.author_avatar}}" mode="aspectFill"/>
+        </view>
+        <view class="titText">
+          <view class="titUserName">{{post.author_name}}</view>
+          <view class="titUserMeta">
+            <view class="wjModel">{{post.date}}</view>
+            <view class="wjModel">{{post.views}} 浏览</view>
+          </view>
+        </view>
+      </view>
+      </navigator>
+    </view>
+    <view class="singleContent">
+      <template is="wxParse" data="{{wxParseData: post_content.nodes}}"/>
+    </view>
+    <view class="comment">
+      <view class="commentTilte">
+        <view class="commentTilteTxt">全部评论（{{post.comment_count}}）</view>
+      </view>
+      <view class="commentsItem" wx:for="{{comment}}" wx:key="c" id="comment-{{item.id}}">
+        <view class="content-padded">
+          <view class="wt-avatar pull-left">
+            <image mode="aspectFill" src="{{item.avatar}}"/>
+          </view>
+          <view class="wt-comments-text">
+            <view class="wt-comments-info">
+              <view class="wjModel commentAuthor">{{item.comment_author}}</view>
+              <view class="wjModel">{{item.comment_date}}</view>
+              <view class="comment_floor pull-right">{{post.comment_count-index}} 楼</view>
+            </view>
+            <view class="wt-comment-content">
+              <template is="wxParse" data="{{wxParseData: comment_content[index].nodes}}"/>
+            </view>
+            <view class="wt-comments-tools">
+              <view class="wjModel">赞 0</view>
+              <view class="wjModel">踩 0</view>
+              <view class="wjModel">回复</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="empty" wx:if="{{comment.length==0}}">
+        <view class="emptyIcon"></view>
+        <view class="emptyText">还没有评论，快来占个沙发吧！</view>
+      </view>
+      <view class="loadMore" wx:if="{{comment.length>0}}">{{loadText}}</view>
+    </view>
+    </scroll-view>
+  </view>
+</view>

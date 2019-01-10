@@ -1,0 +1,17 @@
+<view class="page">
+  <view class="content">
+  <view class="formBox">
+      <view class="formItemText">个人网址</view>
+      <view class="formItem">
+        <input type="text" value="{{user_url}}"
+        placeholder="请输入您的个人网址" class="form-control"
+        name="user_url" bindinput="inputFunc" data-name="user_url"/>
+      </view>
+    </view>
+    <view class="formBox">
+      <view class="formItem">
+        <view class="btn btn-primary formBtn" bindtap="submitForm">保 存</view>
+      </view>
+    </view>
+  </view>
+</view>

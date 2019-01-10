@@ -1,0 +1,40 @@
+<view class="page topicPage">
+  <view class="content">
+    <view class="list-block" wx:if="{{author.user_login}}">
+      <view class="list-item noRight settingAvatar">
+        <view class="list-title">用户头像</view>
+        <view class="list-content">
+          <image src="{{author.user_avatar}}" mode="aspectFill"/>
+        </view>
+      </view>
+      <view class="list-item noRight">
+        <view class="list-title">昵称</view>
+        <view class="list-content">{{author.display_name}}</view>
+      </view>
+      <view class="list-item noRight">
+        <view class="list-title">邮箱</view>
+        <view class="list-content">{{author.user_email}}</view>
+      </view>
+      <view class="list-item noRight">
+        <view class="list-title">网址</view>
+        <view class="list-content">{{author.user_url}}</view>
+      </view>
+      <view class="list-item noRight">
+        <view class="list-title">地址</view>
+        <view class="list-content">{{author.location}}</view>
+      </view>
+      <view class="list-item noRight">
+        <view class="list-title">个性说明</view>
+        <view class="list-content">{{author.description}}</view>
+      </view>
+      <view class="list-item noRight">
+        <view class="list-title">手机号</view>
+        <view class="list-content">{{author.mobile_phone}}</view>
+      </view>
+      <view class="list-item noRight">
+        <view class="list-title">注册时间</view>
+        <view class="list-content">{{author.user_registered}}</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,24 @@
+<view class="page">
+  <view class="content">
+    <view class="formBox">
+      <view class="formItemText">手机号</view>
+      <view class="formItem">
+        <input type="text" value="{{mobile_phone}}"
+        placeholder="请输入您的手机号" class="form-control"
+        name="mobile_phone" bindinput="inputFunc" data-name="mobile_phone"/>
+      </view>
+    </view>
+    <view class="formBox">
+      <view class="formItemText">验证码</view>
+      <view class="formItem formItemVerification">
+        <input type="text" value=""
+        placeholder="请输入验证码" class="form-control"
+        name="sms_code" bindinput="inputFunc" data-name="sms_code"/>
+        <view class="btn btn-primary" bindtap="getSmsCode">{{smsText}}</view>
+      </view>
+    </view>
+    <view class="formItem">
+      <view class="btn btn-primary formBtn" bindtap="submitData">保存</view>
+    </view>
+  </view>
+</view>

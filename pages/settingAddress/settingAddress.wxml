@@ -1,0 +1,28 @@
+<view class="page">
+  <view class="content">
+    <view class="formBox">
+      <view class="formItemText">省市区</view>
+      <view class="formItem">
+        <picker mode="region"
+        bindchange="bindRegionChange"
+        value="{{region}}" custom-item="{{customItem}}">
+        <input type="text" value="{{user_email}}"
+        placeholder="请选择" class="form-control"
+        disabled="true" name="user_email"
+        value="{{location}}"/>
+        </picker>
+      </view>
+    </view>
+    <view class="formBox">
+      <view class="formItemText">详细地址</view>
+      <view class="formItem">
+        <textarea placeholder="你的详细地址" bindinput="inputFunc" class="form-control form-textarea"></textarea>
+      </view>
+    </view>
+    <view class="formBox">
+      <view class="formItem">
+        <view class="btn btn-primary formBtn" bindtap="submitForm">保存</view>
+      </view>
+    </view>
+  </view>
+</view>

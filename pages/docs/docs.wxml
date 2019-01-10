@@ -1,0 +1,34 @@
+<view class="page">
+  <view class="content">
+    <view class="tabs">
+      <view class="tabs-item active">A-E</view>
+      <view class="tabs-item">F-K</view>
+      <view class="tabs-item">L-Q</view>
+      <view class="tabs-item">R-U</view>
+      <view class="tabs-item">V-Z</view>
+    </view>
+    <scroll-view
+      scroll-y style="height: {{scrollViewHeight}}px;"
+      bindscrolltolower="loadData"
+    >
+      <view class="docsList">
+        <view class="docsItem" bindtap="toDocs" data-id="{{item.term_id}}"
+        wx:for="{{dataList}}" wx:key="i">
+          <view class="diImage pull-left">
+            <image style="height:160rpx; width:160rpx;" mode="aspectFill" src="{{item.cover}}"/>
+          </view>
+          <view class="diText">
+            <view class="diTitle">{{item.name}}</view>
+            <view class="diInfo">{{item.summary}}</view>
+            <view class="diMeta">
+              <view class="wjModel">{{item.views}} 浏览</view>
+              <view class="wjModel">{{item.count}} 文档</view>
+              <view class="wjModel">{{item.comment_count}} 评论</view>
+            </view>
+          </view>
+        </view>
+        <view class="loadMore">{{loadText}}</view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

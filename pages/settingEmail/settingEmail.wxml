@@ -1,0 +1,24 @@
+<view class="page">
+  <view class="content">
+    <view class="formBox">
+      <view class="formItemText">邮箱地址</view>
+      <view class="formItem">
+        <input type="text" value="{{user_email}}"
+        placeholder="请输入您的邮箱" class="form-control"
+        name="user_email" bindinput="inputFunc" data-name="user_email"/>
+      </view>
+    </view>
+    <view class="formBox">
+      <view class="formItemText">验证码</view>
+      <view class="formItem formItemVerification">
+        <input type="text" value=""
+        placeholder="请输入验证码" class="form-control"
+        name="email_code" bindinput="inputFunc" data-name="email_code"/>
+        <view class="btn btn-primary" bindtap="getEmailCode">{{emailText}}</view>
+      </view>
+    </view>
+    <view class="formItem">
+      <view class="btn btn-primary formBtn" bindtap="submitData">保存</view>
+    </view>
+  </view>
+</view>

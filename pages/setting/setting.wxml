@@ -1,0 +1,45 @@
+<view class="page topicPage">
+  <view class="bottomTools btn btn-danger" bindtap="logOut">退出登录</view>
+  <view class="content">
+    <view class="list-block">
+      <view class="list-item settingAvatar">
+        <view class="list-title">用户头像</view>
+        <view class="list-content">
+          <image src="{{userInfo.user_avatar}}" mode="aspectFill"/>
+        </view>
+      </view>
+      <view class="list-item noRight">
+        <view class="list-title">账号（不可修改）</view>
+        <view class="list-content">{{userInfo.user_login}}</view>
+      </view>
+      <view class="list-item" bindtap="jumpSetting" data-page="settingNickName">
+        <view class="list-title">昵称</view>
+        <view class="list-content">{{userInfo.display_name}}</view>
+      </view>
+      <view class="list-item" bindtap="jumpSetting" data-page="settingEmail">
+        <view class="list-title">邮箱</view>
+        <view class="list-content">{{userInfo.user_email}}</view>
+      </view>
+      <view class="list-item" bindtap="jumpSetting" data-page="settingWebsite">
+        <view class="list-title">网址</view>
+        <view class="list-content">{{userInfo.user_url}}</view>
+      </view>
+      <view class="list-item" bindtap="jumpSetting" data-page="settingAddress">
+        <view class="list-title">地址</view>
+        <view class="list-content">{{userInfo.location}}</view>
+      </view>
+      <view class="list-item" bindtap="jumpSetting" data-page="settingDescription">
+        <view class="list-title">个性说明</view>
+        <view class="list-content">{{userInfo.description}}</view>
+      </view>
+      <view class="list-item" bindtap="jumpSetting" data-page="settingPhone">
+        <view class="list-title">手机号</view>
+        <view class="list-content">{{userInfo.mobile_phone}}</view>
+      </view>
+      <view class="list-item noRight">
+        <view class="list-title">注册时间</view>
+        <view class="list-content">{{userInfo.user_registered}}</view>
+      </view>
+    </view>
+  </view>
+</view>

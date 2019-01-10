@@ -1,0 +1,4 @@
+.singleContent{
+  overflow-y: auto;
+  box-sizing: border-box;
+}

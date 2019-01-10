@@ -1,0 +1,43 @@
+<view class="page">
+  <view class="content">
+    <view class="formBox">
+      <view class="formItemText">举报的地址</view>
+      <view class="formItem">
+        <input type="text"
+        placeholder="举报的地址" class="form-control"
+        name="report_path" data-v="report_path" bindinput="inputFunc"/>
+      </view>
+    </view>
+    <view class="formBox">
+      <view class="formItemText">举报类型</view>
+      <view class="formItem">
+        <picker bindchange="bindPickerChange"
+        value="{{report_type_index}}" range="{{report_type_arr}}">
+          <input type="text" disabled="true" value="{{report_type}}"
+          placeholder="请选择举报的类型" class="form-control"
+          name="report_type"/>
+        </picker>
+      </view>
+    </view>
+    <view class="formBox">
+      <view class="formItemText">其他举报内容</view>
+      <view class="formItem">
+        <textarea placeholder="请输入其他举报内容"
+        bindinput="inputFunc"
+        data-v="report_content"
+        name="report_content"
+        class="form-control form-textarea"></textarea>
+      </view>
+      <view class="formItemText">
+      如需帮助 请联系
+      <view>QQ：353207542</view>
+      邮箱：353207542@qq.com
+      </view>
+    </view>
+    <view class="formBox">
+      <view class="formItem">
+        <view class="btn btn-primary formBtn" bindtap="checkForm">保 存</view>
+      </view>
+    </view>
+  </view>
+</view>

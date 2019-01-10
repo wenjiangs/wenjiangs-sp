@@ -1,0 +1,50 @@
+<view class="page topicPage">
+  <view class="content">
+    <view class="uHead" bindtap="jumpPage" data-auth="1" data-page="setting">
+      <view class="uAvatar pull-left">
+        <image src="{{userInfo.user_avatar}}" mode="aspectFill"/>
+      </view>
+      <view class="uText">
+        <view class="uName">{{userInfo.display_name}}</view>
+        <view class="uNotice">{{user_setting_text}}</view>
+      </view>
+      <button wx:if="{{!isLogin}}" class="getUIBtn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button>
+    </view>
+    <view class="list-block uNav" wx:if="{{isLogin}}">
+      <view class="list-item" bindtap="jumpPage" data-page="userPost">
+        <view class="list-title"><i class="iconfont icon-wenzhangguanli"></i> 我的文章</view>
+        <view class="list-content">{{userInfo.post_count}}</view>
+      </view>
+      <view class="list-item" bindtap="jumpPage" data-page="userComment">
+        <view class="list-title"><i class="iconfont icon-xiaoxi"></i> 我的评论</view>
+        <view class="list-content">{{userInfo.comment_count}}</view>
+      </view>
+      <view class="list-item" bindtap="jumpPage" data-page="userTopic">
+        <view class="list-title"><i class="iconfont icon-application"></i> 我的话题</view>
+        <view class="list-content">{{userInfo.topic_count}}</view>
+      </view>
+      <view class="list-item" bindtap="jumpPage" data-page="userReply">
+        <view class="list-title"><i class="iconfont icon-liaotian2"></i> 我的回复</view>
+        <view class="list-content">{{userInfo.reply_count}}</view>
+      </view>
+      <view class="list-item" bindtap="jumpPage" data-page="userCollection">
+        <view class="list-title"><i class="iconfont icon-xin"></i> 我的收藏</view>
+        <view class="list-content">{{userInfo.collection_count}}</view>
+      </view>
+    </view>
+    <view class="list-block uNav">
+      <view class="list-item" bindtap="jumpPage" data-page="setting" wx:if="{{isLogin}}">
+        <view class="list-title"><i class="iconfont icon-shezhi2"></i> 账户设置</view>
+        <view class="list-content"></view>
+      </view>
+      <view class="list-item" bindtap="jumpPage" data-page="feedback">
+        <view class="list-title"><i class="iconfont icon-fankuiyijianfankui-xianxing"></i> 意见反馈</view>
+        <view class="list-content"></view>
+      </view>
+      <view class="list-item" bindtap="jumpPage" data-page="page">
+        <view class="list-title"><i class="iconfont icon-File"></i> 关于我们</view>
+        <view class="list-content"></view>
+      </view>
+    </view>
+  </view>
+</view>

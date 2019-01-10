@@ -1,0 +1,74 @@
+<import src="/components/wxParse/wxParse.wxml"/>
+<view class="page topicPage">
+  <view class="content">
+    <view class="tabs">
+      <view class="tabs-item {{dataType==1?'active':''}}" bindtap="tabClick" data-dataType="1">我发布的评论</view>
+      <view class="tabs-item {{dataType==2?'active':''}}" bindtap="tabClick" data-dataType="2">别人给我的评论</view>
+    </view>
+    <scroll-view
+      scroll-y style="height: {{scrollViewHeight}}px;"
+      bindscrolltolower="loadData"
+    >
+    <view class="topicList">
+        <view class="topicItem" bindtap="toSingle" data-id="{{item.comment_ID}}"
+        wx:for="{{dataList}}" wx:key="i">
+          <view class="tiTop">
+            <view class="titAvatar pull-left">
+              <image src="{{item.avatar}}" mode="aspectFill"/>
+            </view>
+            <view class="titText">
+              <view class="titUserName">{{item.comment_author}}</view>
+              <view class="titUserMeta">
+                <view class="wjModel">{{item.comment_date}}</view>
+                <view class="wjModel">{{item.views}} 浏览</view>
+              </view>
+            </view>
+          </view>
+          <view class="tiContent">
+            <template is="wxParse" data="{{wxParseData: comment_content[index].nodes}}"/>
+          </view>
+          <view class="topicImgList" wx:if="{{item.thumbnail}}">
+            <view wx:if="{{item.thumbnail.length==1}}" class="singleImg">
+              <image catchtap="viewBigImage" src="{{item.thumbnails[0]}}"
+                data-src="{{item.thumbnail[0]}}"
+                data-list="{{item.thumbnail}}"
+                mode="aspectFill"/>
+            </view>
+            <view wx:if="{{item.thumbnail.length>1}}" class="topicImgItem" wx:for-item="iItem"
+            wx:for="{{item.thumbnails}}" wx:key="i">
+              <image catchtap="viewBigImage" src="{{iItem}}"
+                data-src="{{item.thumbnail[index]}}"
+                data-list="{{item.thumbnail}}"
+                mode="aspectFill"/>
+            </view>
+          </view>
+          <view class="commentQuote">
+            <view class="postItem" bindtap="toSingle" data-id="{{item.ID}}">
+              <view class="postImage" wx:if="{{item.thumbnail.length > 0 && item.thumbnail.length < 3}}">
+                <image src="{{item.thumbnail[0]}}" style="height:180rpx; width:240rpx; "/>
+              </view>
+              <view class="postTitle">{{item.post.title}}</view>
+              <view class="postMulImage" wx:if="{{item.post.thumbnail.length >= 3}}">
+                <view class="postMulImageItem" wx:for="{{item.post.thumbnail}}" wx:for-item="mulItem" wx:key="i">
+                  <image src="{{mulItem}}" mode="aspectFill" style="height:171rpx; width:228rpx; "/>
+                </view>
+              </view>
+              <view class="postItemBottom">
+                <view class="wjModel">{{item.post.author_name}}</view>
+                <view class="wjModel">{{item.post.date}}</view>
+                <view class="wjModel">{{item.post.views}} 浏览</view>
+                <view class="wjModel">{{item.post.comment_count}} 评论</view>
+                <view class="wjModel">{{item.post.love}} 喜欢</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="loadMore" wx:if="{{dataList.length>0}}">{{loadText}}</view>
+        <view class="empty" wx:if="{{dataList.length==0}}">
+          <view class="emptyIcon"></view>
+          <view class="emptyText">还没有任何数据</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

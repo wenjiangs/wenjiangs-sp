@@ -1,0 +1,77 @@
+<import src="/components/wxParse/wxParse.wxml"/>
+<view class="page">
+  <view class="singleTools">
+    <view class="singleToolsItem" bindtap="showCommentForm">
+      <i class="iconfont icon-xiaoxi"></i>评论 {{docsSingle.comment_count}}
+    </view>
+    <view class="singleToolsItem">
+      <i class="iconfont icon-xin"></i>收藏 {{docsSingle.love}}
+    </view>
+    <view class="singleToolsItem">
+      <i class="iconfont icon-iconfontfenxiang"></i>分享
+    </view>
+  </view>
+  <view class="content">
+    <view class="docsItem">
+      <view class="diImage pull-left">
+        <image style="height:160rpx; width:160rpx;" mode="aspectFill" src="{{docsSingle.cover}}"/>
+      </view>
+      <view class="diText">
+        <view class="diTitle">{{docsSingle.name}}</view>
+        <view class="diInfo">{{docsSingle.summary}}</view>
+        <view class="diMeta">
+          <view class="wjModel">{{docsSingle.views}} 浏览</view>
+          <view class="wjModel">{{docsSingle.count}} 文档</view>
+          <view class="wjModel">{{docsSingle.comment_count}} 评论</view>
+        </view>
+      </view>
+    </view>
+    <view class="tabs">
+      <view class="tabs-item {{cType==1?'active':''}}" data-type="1" bindtap="changeTabs">简介</view>
+      <view class="tabs-item {{cType==2?'active':''}}" data-type="2" bindtap="changeTabs">目录</view>
+      <view class="tabs-item {{cType==3?'active':''}}" data-type="3" bindtap="changeTabs">评论</view>
+    </view>
+    <view class="docsDescription" wx:if="{{cType==1}}">
+      <template is="wxParse" data="{{wxParseData: docs_details.nodes}}"/>
+    </view>
+    <view class="docsMenu" wx:if="{{cType==2}}">
+      <view class="list-block">
+        <view class="list-item" data-id="{{item.ID}}" bindtap="toSingle"
+        wx:for="{{post}}" wx:key="i">
+          {{item.title}}
+        </view>
+      </view>
+    </view>
+    <view class="docsComment" wx:if="{{cType==3}}">
+      <view class="comment">
+        <view class="commentsItem" wx:for="{{comment}}" wx:key="c" id="comment-{{item.id}}">
+          <view class="content-padded">
+            <view class="wt-avatar pull-left">
+              <image mode="aspectFill" src="{{item.avatar}}"/>
+            </view>
+            <view class="wt-comments-text">
+              <view class="wt-comments-info">
+                <view class="wjModel commentAuthor">{{item.comment_author}}</view>
+                <view class="wjModel">{{item.publish_date}}</view>
+                <view class="comment_floor pull-right">{{docsSingle.comment_count-index}} 楼</view>
+              </view>
+              <view class="wt-comment-content">
+                <template is="wxParse" data="{{wxParseData: comment_content[index].nodes}}"/>
+              </view>
+              <view class="wt-comments-tools">
+                <view class="wjModel">赞 0</view>
+                <view class="wjModel">踩 0</view>
+                <view class="wjModel">回复</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="empty" wx:if="{{comment.length==0}}">
+          <view class="emptyIcon"></view>
+          <view class="emptyText">还没有评论，快来占个沙发吧！</view>
+        </view>
+        <view class="loadMore" wx:if="{{comment.length>0}}">{{loadText}}</view>
+      </view>
+    </view>
+  </view>
+</view>

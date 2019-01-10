@@ -1,0 +1,20 @@
+<view class="page">
+  <view class="content">
+    <view class="formBox">
+      <view class="formItemText">您的昵称</view>
+      <view class="formItem">
+        <input type="text" value="{{display_name}}"
+        placeholder="请输入您的昵称" class="form-control"
+        name="display_name" bindinput="inputFunc"/>
+      </view>
+      <view class="formItem formItemText">
+      注意：与平台有冲突的昵称，平台有权收回。
+      </view>
+    </view>
+    <view class="formBox">
+      <view class="formItem">
+        <view class="btn btn-primary formBtn" bindtap="submitForm">保存</view>
+      </view>
+    </view>
+  </view>
+</view>

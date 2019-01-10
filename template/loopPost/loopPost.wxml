@@ -1,0 +1,20 @@
+<template name="loopPost">
+  <view class="postImage" wx:if="{{item.thumbnail.length > 0 && item.thumbnail.length < 3}}">
+    <image src="{{item.thumbnail[0]}}" style="height:180rpx; width:240rpx; "/>
+  </view>
+  <view class="postItemTop">
+    <view class="wjModel">{{item.author_name}}</view>
+    <view class="wjModel">{{item.date}}</view>
+  </view>
+  <view class="postTitle">{{item.title}}</view>
+  <view class="postMulImage" wx:if="{{item.thumbnail.length >= 3}}">
+    <view class="postMulImageItem" wx:for="{{item.thumbnail}}" wx:for-item="mulItem" wx:key="i">
+      <image src="{{mulItem}}" mode="aspectFill" style="height:171rpx; width:228rpx; "/>
+    </view>
+  </view>
+  <view class="postItemBottom">
+    <view class="wjModel">{{item.views}} 浏览</view>
+    <view class="wjModel">{{item.comment_count}} 评论</view>
+    <view class="wjModel">{{item.love}} 喜欢</view>
+  </view>
+</template>

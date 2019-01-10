@@ -1,0 +1,29 @@
+<import src="../../template/loopPost/loopPost.wxml"/>
+<view class="page">
+  <scroll-view
+    scroll-y style="height: {{scrollViewHeight}}px;"
+    bindscrolltolower="loadData"
+  >
+    <swiper
+      indicator-dots="true"
+      style="width:{{bannerWidth}}px; height:{{bannerHeight}}px"
+    >
+      <block wx:for="{{bannerData}}" wx:key="i">
+        <swiper-item>
+          <image
+            src="{{SITEURL + item.image}}"
+            bindload="bannerImgLoad"
+            mode="aspectFill"
+            style="width:{{bannerWidth}}px; height:{{bannerHeight}}px"
+          />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="postList">
+      <view class="postItem" bindtap="toSingle" data-id="{{item.ID}}" wx:for="{{dataList}}" wx:key="i">
+        <template is="loopPost" data="{{item}}"></template>
+      </view>
+      <view class="loadMore">{{loadText}}</view>
+    </view>
+  </scroll-view>
+</view>

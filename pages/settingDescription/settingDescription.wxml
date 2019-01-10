@@ -1,0 +1,15 @@
+<view class="page">
+  <view class="content">
+  <view class="formBox">
+      <view class="formItemText">个人简介</view>
+      <view class="formItem">
+        <textarea placeholder="你的个人简介" bindinput="inputFunc" class="form-control form-textarea"></textarea>
+      </view>
+    </view>
+    <view class="formBox">
+      <view class="formItem">
+        <view class="btn btn-primary formBtn" bindtap="submitForm">保 存</view>
+      </view>
+    </view>
+  </view>
+</view>

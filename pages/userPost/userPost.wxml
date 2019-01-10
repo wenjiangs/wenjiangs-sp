@@ -1,0 +1,33 @@
+<view class="page">
+  <view class="content">
+    <view class="tabs">
+      <view class="tabs-item {{currentTabs==index?'active':''}}"
+      wx:for="{{postStatus}}"
+      wx:key="i" bindtap="changeStatus"
+      data-currenttabs="{{index}}">{{item.text}}</view>
+    </view>
+    <scroll-view
+      scroll-y style="height: {{scrollViewHeight}}px;"
+      bindscrolltolower="loadData"
+    >
+      <view class="list-block userPostList">
+        <view class="empty" wx:if="{{dataList.length==0}}">
+          <view class="emptyIcon"></view>
+          <view class="emptyText">您还没有发布任何文章</view>
+        </view>
+        <view class="list-item" wx:for="{{dataList}}"
+          wx:key="i" bindtap="toSingle"
+          data-id="{{index}}">
+          <view class="list-title">{{item.title}}</view>
+          <view class="userPostMeta">
+            <view class="wjModel">{{item.views}} 浏览</view>
+            <view class="wjModel">{{item.comment_count}} 评论</view>
+            <view class="wjModel">{{item.collection_current}} 收藏</view>
+            <view class="wjModel">{{item.word_count}} 字数</view>
+          </view>
+        </view>
+        <view wx:if="{{dataList.length>0}}" class="loadMore">{{loadText}}</view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

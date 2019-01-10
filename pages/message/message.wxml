@@ -1,0 +1,36 @@
+<view class="page topicPage">
+  <view class="content">
+    <view class="tabs">
+      <view bindtap="tabClick" data-i="1" class="tabs-item {{navIndex==1?'active':''}}">消息</view>
+      <view bindtap="tabClick" data-i="2" class="tabs-item {{navIndex==2?'active':''}}">联系人</view>
+      <view bindtap="tabClick" data-i="3" class="tabs-item {{navIndex==3?'active':''}}">搜索用户</view>
+    </view>
+    <view class="msgSearch" wx:if="{{navIndex==3}}">
+      <view class="msgSearch2">
+        <view class="btn btn-primary" bindtap="searchUser">搜索</view>
+        <input type="text" bindinput="searchInput" placeholder="请输入关键词"/>
+      </view>
+    </view>
+    <view class="msgList" wx:if="{{viewList.length}}">
+      <view class="msgItem" wx:for="{{viewList}}" wx:key="i" data-id="{{item.user_id}}" bindtap="toSingle">
+        <view class="msgImage pull-left">
+          <image src="{{item.user_avatar}}"/>
+          <view class="noReadBadge" wx:if="{{item.noRead>0}}">{{item.noRead}}</view>
+        </view>
+        <view class="msgText">
+          <view class="msgTitle">
+          <view class="pull-right" wx:if="{{navIndex<3}}">{{item.send_time}}</view>
+          {{item.display_name}}
+          </view>
+          <view class="msgSummary">
+          {{navIndex<2?item.content:item.description}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{viewList.length==0}}">
+      <view class="emptyIcon"></view>
+      <view class="emptyText">列表为空！</view>
+    </view>
+  </view>
+</view>
